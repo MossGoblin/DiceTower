@@ -10,6 +10,7 @@ import { PodManagerComponent } from './dice-manager/pod-manager/pod-manager.comp
 import { PoolManagerComponent } from './dice-manager/pool-manager/pool-manager.component';
 import { DiceLibraryComponent } from './dice-manager/dice-library/dice-library.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     DiceLibraryComponent
   ],
   imports: [
+    HttpClientModule,
     BrowserModule,
     MatButtonModule,
     MatIconModule,

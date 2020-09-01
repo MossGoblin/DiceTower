@@ -1,3 +1,8 @@
+<h1>Dice Library</h1>
+
 <div>
-    {{sampleDice.literal | uppercase}}
+    <button md-button (click)="getPseudo(sampleDice)"><mat-icon>search</mat-icon></button>
+</div>
+<div>
+    {{sampleDice.literal}}: {{sampleDice.getMin()}}..{{sampleDice.getMax()}}&nbsp;<b>{{randomResult}}</b>
 </div>

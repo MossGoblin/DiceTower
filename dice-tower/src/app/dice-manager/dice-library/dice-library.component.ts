@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { MatButtonModule } from '@angular/material/button';
 
 import { Dice, DiceClass } from '../../data/dice-model';
 
 import { RandomizerService } from '../../service/randomizer.service';
+import { map, tap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-dice-library',
@@ -12,6 +14,7 @@ import { RandomizerService } from '../../service/randomizer.service';
 export class DiceLibraryComponent implements OnInit {
 
   sampleDice: Dice;
+  randomResult: number = 0;
   constructor(private randomizer: RandomizerService) { 
 
   }
@@ -21,7 +24,23 @@ export class DiceLibraryComponent implements OnInit {
   }
 
   getRandom(dice: Dice) {
-    return this.randomizer.getRandom(dice);
+    this.randomizer.getRandom(dice.getSides().length)
+    .pipe(
+      tap((res: number) => console.log("Rolled " + res)))
+      .subscribe(
+        (position: number) => {
+        this.randomResult = dice.getSides()[position];
+      }
+    )
+  }
+
+  getPseudo(dice: Dice) {
+    this.randomResult = this.randomizer.getPseudo(dice);
+  }
+
+  rerollSampleDice() {
+    this.sampleDice = new Dice('d6', DiceClass.Basic, 2, 6);
+    console.log(`Rerolled: ${this.sampleDice.literal}`);
   }
 
 }

@@ -42,11 +42,12 @@ export class DiceSchema implements IDiceSchema {
     constructor(dice_class: DiceClass, min?: number, max?: number, sides?: number[]) {
         // TODO Validate params
         this.dice_class = dice_class;
+        this.sides = [];
         switch(dice_class) { 
             case 0: { 
                 this.minimum = 1;
                 this.maximum = max;
-                for (let side = this.minimum; side < this.maximum; side++) {
+                for (let side = this.minimum; side <= this.maximum; side++) {
                     this.sides.push(side);
                   }
                 break; 
@@ -54,7 +55,7 @@ export class DiceSchema implements IDiceSchema {
             case 1: { 
                 this.minimum = min;
                 this.maximum = max;
-                for (let side = this.minimum; side < this.maximum; side++) {
+                for (let side = this.minimum; side <= this.maximum; side++) {
                     this.sides.push(side);
                   }
                 break; 
